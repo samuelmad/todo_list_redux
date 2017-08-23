@@ -1,7 +1,10 @@
 import React from 'react'
 
-export default ({name, isComplete})=>(
+export default ({id, name, isComplete, toggleTodo, deleteTodo})=>(
   <li>
-    <input type="checkbox" defaultChecked={isComplete}/> {name}
+    <span className='delete-item'>
+      <button onClick={()=>deleteTodo(id)}>X</button>
+    </span>
+    <input type="checkbox" checked={isComplete} onChange={()=> toggleTodo(id)}/> {name}
   </li>
 )
