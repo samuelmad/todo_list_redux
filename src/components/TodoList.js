@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import TodoItem from './TodoItem'
 import { connect } from 'react-redux'
-import {fetchTodos, toggleTodo, deleteTodo} from '../reducers/todo'
+import {fetchTodos, toggleTodo, deleteTodo, getVisibleTodos} from '../reducers/todo'
 
 
 class TodoList extends Component {
@@ -22,4 +22,4 @@ class TodoList extends Component {
     )
   }
 }
-export default connect((state)=>({todos: state.todo.todos}), {fetchTodos, toggleTodo, deleteTodo})(TodoList)
+export default connect((state, ownProps)=>({todos: getVisibleTodos(state.todo.todos, ownProps.filter)}), {fetchTodos, toggleTodo, deleteTodo})(TodoList)
